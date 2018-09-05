@@ -1,3 +1,2 @@
-# learn-mini-program
-### 如何学习小程序
+# 小程序学习
 #### 1. 理解 MVVM
