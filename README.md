@@ -68,7 +68,7 @@ Page({
         let that = this
         wx.request({
             url: '/getStatus', // 获取状态
-            type: 'POST',
+            method: 'POST',
             success: function (res) {
                 if (res.code === 200) {
                     wx.request({
@@ -114,7 +114,7 @@ Page({
         return new Promise((resolve, reject) => {
             wx.request({
                 url: '/getStatus',
-                type: 'POST',
+                method: 'POST',
                 success (res) {
                     if (res.code === 200) {
                         resolve(res)
@@ -135,7 +135,7 @@ Page({
         this.getStatus().then(res => {
             wx.request({
                 url: '/getList',
-                type: 'POST',
+                method: 'POST',
                 success (res) {
                     if (res.code === 200) {
                         that.setData({
@@ -177,7 +177,7 @@ d）封装
 在上面的方法突然变得无比简洁，也就引出了封装的好处：
 - 封装了 `wx.request` 后，请求错误（`fail`）可以统一处理，不必再写；
 - 与此同时，后端的数据格式也统一做了处理，统一抛出的 `errorCode` 等判断也不必再写；
-- 封装后的方法本身包含了 `url`，`type`，不必再写，只需要在写好的`api.js`中做配置；  
+- 封装后的方法本身包含了 `url`，`method`，不必再写，只需要在写好的`api.js`中做配置；  
 - 封装后的方法本身是一个 `Promise`，最早写到的 `getStatus` 也不必写；  
 
 ### 4. 项目结构    
