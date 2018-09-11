@@ -83,9 +83,15 @@ Page({
                                     list: res.list
                                 })
                             }
+                        },
+                        fail: function (res) {
+                            console.log('请求出错')
                         }
                     })
                 }
+            },
+            fail: function (res) {
+                console.log('请求出错')
             }
         })
     }
@@ -115,6 +121,9 @@ Page({
                     } else {
                         reject(res)
                     }
+                },
+                fail (res) {
+                    console.log('请求出错')
                 }
             })
         })
@@ -133,13 +142,16 @@ Page({
                             list: res.list
                         })
                     }
+                },
+                fail (res) {
+                    console.log('请求出错')
                 }
             })
         })
     }
 })
 ```  
-> 上面的代码，看起来还是套了很多层，那是因为实际开发中，我们会对 `wx.request` 在做一层封装，最后的代码可能是这样的：  
+> 上面的代码，看起来还是套了很多层，那是因为实际开发中，我们会对 `wx.request` 再做一层封装，最后的代码可能是这样的：  
 ```javascript
 const API = require('../../api/api.js') // 引入封装的方法
 
@@ -163,7 +175,7 @@ Page({
 ```  
 d）封装
 在上面的方法突然变得无比简洁，也就引出了封装的好处：
-- 封装了 `wx.request` 后，请求错误可以统一处理，不必再写；
+- 封装了 `wx.request` 后，请求错误（`fail`）可以统一处理，不必再写；
 - 与此同时，后端的数据格式也统一做了处理，统一抛出的 `errorCode` 等判断也不必再写；
 - 封装后的方法本身包含了 `url`，`type`，不必再写，只需要在写好的`api.js`中做配置；  
 - 封装后的方法本身是一个 `Promise`，最早写到的 `getStatus` 也不必写；  
