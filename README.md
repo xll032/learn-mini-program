@@ -249,4 +249,36 @@ b）手机内存访问出错；
 
 注意点：上面的做法实际上并没有办法完全兼容，还是部分机型会出问题。神奇的是，并不是所有 `1rpx` 都会出问题。所以，需要实测一下。如果出现了这种情况，只能退而求其次，使用 `2rpx`
 
-
+- 4） `scroll-view` 组件  
+a）竖向滚动： `<scroll-view class="demo" scroll-y></scroll-view>`，同时给组件加上一个固定高度即可。`.demo { height: 300rpx; }`  
+b）横向滚动：有几个注意点（因为一般情况下是会换行的，所以可能会没有想到），在下面的例子进行说明：  
+wxml（没什么特别的）：  
+```html
+<scroll-view class="demo">
+    <view class="demo-item">A</view>
+    <view class="demo-item">B</view>
+    <view class="demo-item">C</view>
+    <view class="demo-item">D</view>
+</scroll-view>
+```  
+wxss（1. 外部元素设置不换行；2. 内部元素设置成行内元素）：
+```css
+    .demo {
+        width: 150rpx;
+        white-space: nowrap;
+    }
+    .demo-item {
+        display: inline-block;
+        width: 100rpx;
+    }
+```  
+c）隐藏滚动条
+第一时间可能会想到使用官方`API`上的 `scroll-top` 和 `scroll-left` 来实现，不过很不幸，这样做并没有卵用。下面直接上代码。
+wxss：
+```css
+    ::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        color: transparent;
+    }
+```
