@@ -217,7 +217,7 @@ d）封装
 - 2）实现一个简易“微信”，包括：“聊天列表页”、“聊天详情页”、“发现页”、发现页中的“朋友圈页”、“我的”、“设置页”、以及“设置页中的隐私页”；  
 - 3）互动砸蛋小程序（需要看效果的可以找我要，难度比上面两个高）
 
-### 7. 踩坑（将会持续更新）
+### 7. 小贴士（将会持续更新）
 - 1）`<image class="demo" src="{{xxx}}" mode="widthFix"></image>`   
 这种方法可以保证图片的长宽比，但是从后台获取过来的一瞬间，可能会变形，体验不好。可能是因为刚获取到的时候，解析不到图片原本的长宽。
 
@@ -281,4 +281,40 @@ wxss：
         height: 0;
         color: transparent;
     }
+```  
+d）`wx:for` 嵌套 `wx:for`
+用 `wx:for-item` 给嵌套循环一个别名用来区分默认的 ``直接贴个例子
+```javascript
+Page({
+    data: {
+        list: [
+            {
+                id: 1,
+                title: 'demo'
+                sub: [
+                    '11111',
+                    '22222',
+                    '33333'
+                ]
+            },
+            {
+                id: 1,
+                title: 'demo'
+                sub: [
+                    '11111',
+                    '22222',
+                    '33333'
+                ]
+            }
+        ]
+    }
+})
+```
+```html
+<view wx:for="{{list}}" wx:key="{{item.id}}">
+    <view>{{item.title}}</view>
+    <view wx:for="{{list.sub}}" wx.for-item="{{cell}}" wx:key="{{index}}">
+        {{cell}}
+    </view>
+</view>
 ```
