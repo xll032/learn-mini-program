@@ -178,7 +178,12 @@ d）封装
 - 封装了 `wx.request` 后，请求错误（`fail`）可以统一处理，不必再写；
 - 与此同时，后端的数据格式也统一做了处理，统一抛出的 `errorCode` 等判断也不必再写；
 - 封装后的方法本身包含了 `url`，`method`，不必再写，只需要在写好的`api.js`中做配置；  
-- 封装后的方法本身是一个 `Promise`，最早写到的 `getStatus` 也不必写；  
+- 封装后的方法本身是一个 `Promise`，最早写到的 `getStatus` 也不必写。
+
+- 2） 组件化  
+使用小程序 `template` 将公用部分抽离出去  
+- q：何时使用？ a：多出使用到，样式相同，功能类似的部分；
+- q：需要注意什么？ a：公共部分精准抽离，使用方便。
 
 ### 4. 项目结构    
 > 这点不多说了，小程序的官方教程写的很清晰明了。传送门：[小程序代码构成](https://developers.weixin.qq.com/miniprogram/dev/quickstart/basic/file.html 'https://developers.weixin.qq.com/miniprogram/dev/quickstart/basic/file.html')
