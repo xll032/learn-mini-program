@@ -322,4 +322,22 @@ Page({
         {{cell}}
     </view>
 </view>
+```  
+
+e）`button` 边框完全去除  
+```html
+<button>点我</button>
+```  
+```css
+button {
+    border: none;
+    outline: none;
+}
+```  
+理论上讲，这样就没有边框了，但是在微信小程序里，还有一个样式会导致有一个淡淡的边框存在
+需要加上：
+```css
+button::after {
+    border: none;
+}
 ```
