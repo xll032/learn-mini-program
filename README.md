@@ -287,7 +287,7 @@ wxss：
         color: transparent;
     }
 ```  
-d）`wx:for` 嵌套 `wx:for`
+- 5）`wx:for` 嵌套 `wx:for`
 用 `wx:for-item` 给嵌套循环一个别名用来区分默认的 ``直接贴个例子
 ```javascript
 Page({
@@ -324,7 +324,7 @@ Page({
 </view>
 ```  
 
-e）`button` 边框完全去除  
+- 6）`button` 边框完全去除  
 ```html
 <button>点我</button>
 ```  
@@ -340,4 +340,27 @@ button {
 button::after {
     border: none;
 }
-```
+```  
+
+- 7）阿拉丁统计与分享参数冲突（阿拉丁会覆盖默认分享参数）  
+原分享路径为：/pages/newsDetail/newsDetail?id=66666 
+接入阿拉丁后，由于阿拉丁统计需要一个参数，分享链接会修改，从而变为：/pages/newsDetail/newsDetail?ald_share_src=7m2397806r6t72g4354d4y174  
+这就导致了分享点击会报错。  
+
+解决方法：  
+- 在`onLoad`方法中配置`onShareAppmessage`函数，`return`指定`path`，就可以同时保留两者的参数。
+- 示例代码：
+```javascript
+onLoad (options) { 
+    /**
+     * @func 分享事件
+     * @returns {object} 分享的参数 
+     */
+    onShareAppMessage () {
+        return {
+            path: `/pages/newsDetail/newsDetail?id=${this.data.articleId}`
+        }
+}
+```  
+再来看一下分享的链接：/pages/newsDetail/newsDetail?id=66666&ald_share_src=7m2397806r6t72g4354d4y174  
+完美。
