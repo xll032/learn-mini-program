@@ -223,12 +223,12 @@ d）封装
 - 3）互动砸蛋小程序（需要看效果的可以找我要，难度比上面两个高）
 
 ### 7. 小贴士（将会持续更新）
-- 1）`<image class="demo" src="{{xxx}}" mode="widthFix"></image>`   
+#### 1）`<image class="demo" src="{{xxx}}" mode="widthFix"></image>`   
 这种方法可以保证图片的长宽比，但是从后台获取过来的一瞬间，可能会变形，体验不好。可能是因为刚获取到的时候，解析不到图片原本的长宽。
 
 建议的做法：使用样式固定大小，例如：`.demo { width: 100rpx; height: 120rpx; }`
 
-- 2）`wx.setStorageSync`  
+#### 2）`wx.setStorageSync`  
 这个方法用于同步存储数据到本地，这个方法并不稳定（有极低的可能会失败），如果在主流程中使用将有可能导致重要数据丢失，甚至程序卡死。  
 失败的原因主要是：  
 a）微信版本过低，不支持；
@@ -238,7 +238,7 @@ b）手机内存访问出错；
 
 此外，使用`wx.setStorage`会稳定一些，但是要注意这个方法是异步调用的。
 
-- 3）`border: 1rpx solid #666`  
+#### 3）`border: 1rpx solid #666`  
 细边框渲染。由于真机上存在 `dpr` 的影响，会导致`1rpx`不渲染，问题比较明显的机型是：iPhone Plus 和 X。
 
 建议的做法：将外部容器的宽高设为奇数或.5的2倍，例如： `.container { width: 101rpx; height: 101rpx }`，`.container { width: 110rpx; height: 110rpx }`  
@@ -254,7 +254,7 @@ b）手机内存访问出错；
 
 注意点：上面的做法实际上并没有办法完全兼容，还是部分机型会出问题。神奇的是，并不是所有 `1rpx` 都会出问题。所以，需要实测一下。如果出现了这种情况，只能退而求其次，使用 `2rpx`
 
-- 4） `scroll-view` 组件  
+#### 4） `scroll-view` 组件  
 a）竖向滚动： `<scroll-view class="demo" scroll-y></scroll-view>`，同时给组件加上一个固定高度即可。`.demo { height: 300rpx; }`  
 b）横向滚动：有几个注意点（因为一般情况下是会换行的，所以可能会没有想到），在下面的例子进行说明：  
 wxml（没什么特别的）：  
@@ -287,7 +287,7 @@ wxss：
         color: transparent;
     }
 ```  
-- 5）`wx:for` 嵌套 `wx:for`
+#### 5）`wx:for` 嵌套 `wx:for`
 用 `wx:for-item` 给嵌套循环一个别名用来区分默认的 ``直接贴个例子
 ```javascript
 Page({
@@ -324,7 +324,7 @@ Page({
 </view>
 ```  
 
-- 6）`button` 边框完全去除  
+#### 6）`button` 边框完全去除  
 ```html
 <button>点我</button>
 ```  
@@ -342,7 +342,7 @@ button::after {
 }
 ```  
 
-- 7）阿拉丁统计与分享参数冲突（阿拉丁会覆盖默认分享参数）  
+#### 7）阿拉丁统计与分享参数冲突（阿拉丁会覆盖默认分享参数）  
 原分享路径为：/pages/newsDetail/newsDetail?id=66666 
 接入阿拉丁后，由于阿拉丁统计需要一个参数，分享链接会修改，从而变为：/pages/newsDetail/newsDetail?ald_share_src=7m2397806r6t72g4354d4y174  
 这就导致了分享点击会报错。  
