@@ -348,18 +348,18 @@ button::after {
 这就导致了分享点击会报错。  
 
 解决方法：  
-- 在`onLoad`方法中配置`onShareAppmessage`函数，`return`指定`path`，就可以同时保留两者的参数。
+- 在`Page`中配置`onShareAppmessage`方法，`return`指定`path`，就可以同时保留两者的参数。
 - 示例代码：
 ```javascript
-onLoad (options) { 
-    /**
-     * @func 分享事件
-     * @returns {object} 分享的参数 
-     */
-    onShareAppMessage () {
-        return {
-            path: `/pages/newsDetail/newsDetail?id=${this.data.articleId}`
-        }
+/**
+ * @func 分享事件
+ * @returns {object} 分享的参数 
+ */
+onShareAppMessage () {
+    // 这里可以写自定义的事件，例如统计
+    return {
+        path: `/pages/newsDetail/newsDetail?id=${this.data.articleId}`
+    }
 }
 ```  
 再来看一下分享的链接：/pages/newsDetail/newsDetail?id=66666&ald_share_src=7m2397806r6t72g4354d4y174  
