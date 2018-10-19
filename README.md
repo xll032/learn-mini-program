@@ -318,7 +318,7 @@ Page({
 ```html
 <view wx:for="{{list}}" wx:key="{{item.id}}">
     <view>{{item.title}}</view>
-    <view wx:for="{{list.sub}}" wx.for-item="{{cell}}" wx:key="{{index}}">
+    <view wx:for="{{list.sub}}" wx:for-item="{{cell}}" wx:key="{{index}}">
         {{cell}}
     </view>
 </view>
