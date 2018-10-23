@@ -364,3 +364,19 @@ onShareAppMessage () {
 ```  
 再来看一下分享的链接：/pages/newsDetail/newsDetail?id=66666&ald_share_src=7m2397806r6t72g4354d4y174  
 完美。
+
+#### 8）小程序触摸穿透  
+我们经常会遇到弹出层的需求。在web中，我们可以通过动态设置 `body { height: 100%; overflow: hidden; }` 来禁止滚动。在小程序中，则需要动态将page设置为该属性，但是动态设置page是实现不了的（因为页面中并没有这个元素，而小程序中也没有DOM）。  
+解决方案：
+给弹出遮罩层加一个触摸事件`catchtouchmove`即可。
+```html
+<view catchtouchmove="stopMove"></view>
+```
+```javascript
+/**
+ * @func 用于禁止触摸，无需写方法
+ */
+stopMove () {
+    return
+}
+```
