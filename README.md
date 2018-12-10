@@ -380,3 +380,17 @@ stopMove () {
     return
 }
 ```
+#### 9）小程序同一页面多个分享效果
+在小程序中，可能会遇到一个页面里有几个不同的分享逻辑（不同链接、不同文案、图片等）。而实现分享只有一种方式，下面来看看要怎么实现：
+```html
+<button open-type="share" data-type="1">分享1</button>
+<button open-type="share" data-type="2">分享2</button>
+```
+```javascript
+onShareAppMessage (res) {
+    let type = res.target.dataset.type // 获取不同button的状态
+    return {
+        title: `类型${type}`
+    }
+}
+```
