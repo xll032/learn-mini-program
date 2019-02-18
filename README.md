@@ -432,3 +432,42 @@ onShareAppMessage (res) {
     }
 }
 ```
+
+#### 10）小程序同一页面多个分享效果
+
+在小程序中，可能会遇到在真机上文本无法居中的情况，示例代码如下：
+
+```html
+<view class="box">
+  1
+</view>
+```
+
+```css
+.box {
+  display: flex;
+  width: 32rpx;
+  height: 32rpx;
+  justify-content: center;
+  align-items: center;
+  border: 1rpx solid #e84146;
+  border-radius: 50%;
+  color: #e84146;
+  font-size: 22rpx;
+  letter-spacing: 0;
+}
+```
+
+从代码上看似乎没有任何问题，在模拟器上也是好的。事实上，使用Mac打包预览发布，也都正常。但相同代码在Windows下执行发布就会出现向右偏移的问题。
+
+原因是：Windows系统打包的时候，会把文本内容的换行也塞进去，从而使文本前有一个小空格，导致偏移。
+
+解决方案（css无需处理）：
+
+```html
+<view class="box">
+  <text>1</text>   
+</view>
+```
+
+只要养成一个出现文字就用`<text>`包裹起来的好习惯，就可以避免给自己和同事埋下这个坑。
